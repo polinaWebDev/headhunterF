@@ -1,0 +1,114 @@
+/* style.module.css */
+
+.chatPage {
+    display: flex;
+    height: 100vh; /* Занимает всю высоту экрана */
+}
+
+.chatList {
+    width: 300px;
+    border-right: 1px solid #ccc;
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.chatItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee; /* Разделитель между чатами */
+}
+
+.chatItem:hover {
+    background-color: #f0f0f0; /* Подсветка при наведении */
+}
+
+.chatAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.lastMessage {
+    font-size: 12px;
+    color: #999;
+    margin-left: auto; /* Выравниваем последнее сообщение справа */
+    white-space: nowrap; /* Предотвращаем перенос текста */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Добавляем многоточие, если текст слишком длинный */
+}
+
+.chatWindow {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageList {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto; /* Прокрутка для сообщений */
+    padding-bottom: 20px; /* Отступ снизу для input */
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 70%; /* Ограничиваем ширину сообщений */
+    display: inline-block; /* Позволяет сообщению занимать только необходимое пространство */
+}
+
+.sent {
+    background-color: #dcf8c6; /* Цвет фона для отправленных сообщений */
+    align-self: flex-end; /* Выравнивание отправленных сообщений справа */
+    margin-left: auto;
+}
+
+.received {
+    background-color: #fff; /* Цвет фона для полученных сообщений */
+    align-self: flex-start; /* Выравнивание полученных сообщений слева */
+}
+
+.messageSender {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    display: block; /* Переносим имя отправителя на новую строку */
+}
+
+
+
+.inputArea {
+    display: flex;
+    align-items: center;
+}
+
+.inputArea input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.inputArea button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.inputArea button:hover {
+    background-color: #0069d9;
+}

@@ -1,0 +1,42 @@
+/* RegisterForm.module.css */
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formGroup {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    color: red; /* Или любой другой цвет для сообщений */
+    margin-bottom: 10px;
+}
+
+.submitButton {
+    padding: 10px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    font-weight: bold;
+    text-align: center;
+}

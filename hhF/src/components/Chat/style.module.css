@@ -1,0 +1,133 @@
+.chatList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.chatCard {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.chatCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chatHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.chatAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatLastMessage {
+    font-size: 14px;
+    color: #555;
+}
+
+.chatTime {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    align-self: flex-end;
+}
+
+.chatContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.messageList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.message {
+    max-width: 70%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+}
+
+.myMessage {
+    align-self: flex-end;
+    background-color: #d1f8d1;
+    border: 1px solid #a8e6a8;
+}
+
+.theirMessage {
+    align-self: flex-start;
+    background-color: #eaeaea;
+    border: 1px solid #cccccc;
+}
+
+.messageContent {
+    margin: 0;
+    font-weight: 400;
+    color: #333;
+}
+
+.messageMeta {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    display: block;
+    text-align: right;
+}
+
+.messageContainer {
+    display: flex;
+    margin: 10px 0;
+}
+.left {
+    justify-content: flex-start;
+}
+.right {
+    justify-content: flex-end;
+}
+.message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+}
+.right .message {
+    background-color: #d1e7ff;
+}
+.messageHeader {
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.timestamp {
+    font-size: 0.75em;
+    color: #888;
+}
+.messageContent {
+    word-wrap: break-word;
+}

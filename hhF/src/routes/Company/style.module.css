@@ -1,0 +1,47 @@
+.card {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 5px;
+    list-style: none;
+}
+
+.companies {
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h2 {
+        margin-top: 10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    button {
+        width: 150px;
+        background: #0070FF;
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        font-weight: bold;
+        padding: 5px;
+    }
+
+    ul {
+        display: flex;
+        gap: 10px;
+
+        li {
+            width: 150px;
+            padding: 16px;
+
+            a {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    }
+
+}

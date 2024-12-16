@@ -1,0 +1,32 @@
+.edit_form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .cta_btn {
+            width: 300px;
+            background: #0070FF;
+            border: none;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 5px;
+        }
+    }
+
+    .form_inner {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        input, textarea {
+            width: 300px;
+        }
+
+    }
+}

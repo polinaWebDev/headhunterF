@@ -1,0 +1,80 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    input, textarea {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        font-family: Inter;
+
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .text_information {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.createForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    gap: 20px;
+}
+
+
+.cta_btn {
+    background: #0070FF;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    list-style: none;
+    padding: 24px;
+
+    h4 {
+        font-size: 22px;
+        font-weight: bold;
+    }
+}
