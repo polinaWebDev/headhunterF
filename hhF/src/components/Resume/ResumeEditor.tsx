@@ -12,6 +12,8 @@ const ResumeManager: React.FC = () => {
         handleNewResume,
     } = useResumeManager();
 
+//Todo: контент сделай также как и тайтл
+
 
     return (
         <div>

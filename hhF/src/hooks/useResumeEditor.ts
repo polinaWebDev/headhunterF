@@ -78,7 +78,7 @@ export const useResumeEditor = ():UseResumeEditorReturn => {
                         data: content
                     });
 
-                    alert("Successfully updated resume");
+                    alert("Successfully updated resum1111e");
                 } else {
                     const res = await apiClient.post(`${SERVER_URL}/create/${userId}`,  {
                         data: content

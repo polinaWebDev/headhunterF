@@ -15,14 +15,30 @@ interface Chat {
     messages: { content: string, createdAt: Date, sender: {id: string, name: string} }[];
 }
 
+// interface Message {
+//     content: string;
+//     createdAt: Date;
+//     senderUser?: {
+//         id: string;
+//         name: string;
+//     };
+//     senderCompany?: {
+//         company_id: string;
+//         name: string;
+//     } | null;
+// }
+
+
 interface Message {
     content: string;
     createdAt: Date;
     sender: {
         id: string;
         name: string;
-    };
+        type: string;
+    }
 }
+
 
 const useChats = (id: string | null) => {
     const [chats, setChats] = useState<Chat[]>([]);
@@ -36,16 +52,16 @@ const useChats = (id: string | null) => {
     useEffect(() => {
         const fetchChats = async () => {
             if (!id) {
-                return; // or handle the case where userId is null, maybe set an error state
+                return;
             }
             try {
                 const response = await apiClient.get<Chat[]>("/chat/user");
                 setChats(response.data);
             } catch (err) {
                 console.error("Ошибка при получении чатов:", err);
-                setError("Ошибка при загрузке чатов"); // устанавливаем сообщение об ошибке
+                setError("Ошибка при загрузке чатов");
             } finally {
-                setLoading(false); // завершаем загрузку независимо от результата
+                setLoading(false);
             }
         };
 
@@ -82,9 +98,9 @@ const useChats = (id: string | null) => {
                 if (socket) {
                     socket.off("receiveMessage");
                     socket.off("loadMessages");
-                    if (currentChatId) { // Проверяем на null
+                    if (currentChatId) {
                         socket.emit("leaveChat", {
-                            chatId: currentChatId, // Используйте id чата, а не userId/companyId
+                            chatId: currentChatId,
                         });
                     }
                 }
@@ -93,16 +109,18 @@ const useChats = (id: string | null) => {
     }, [socket, currentChatId, id]);
 
     const handleChatSelect = (chat: Chat) => {
-        setCurrentChatId(chat.id); // Обновляем currentChatId
-        setMessages([]); // Очищаем messages
+        setCurrentChatId(chat.id);
+        setMessages([]);
     };
 
     const handleSendMessage = (messageContent: string) => {
+        console.log(messageContent);
         if (socket && currentChatId && messageContent && id) {
             socket.emit("sendMessage", {
-                chatId: currentChatId, // Используем currentChatId
+                chatId: currentChatId,
                 content: messageContent,
                 senderId: id,
+                type: "user",
             });
         }
     };

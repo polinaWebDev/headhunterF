@@ -35,6 +35,8 @@ const useResumeManager = ({ initialResumes = [] }: UseResumeManagerProps = {}) =
         fetchResumes();
     }, [fetchResumes]);
 
+    console.log("Fetched resumes:", resumes);
+
     const handleSaveResume = useCallback(async () => {
         console.log("Saving resume. Current editingResumeId:", editingResumeId); // Лог состояния
         if (!editorInstance.current) {
@@ -44,11 +46,12 @@ const useResumeManager = ({ initialResumes = [] }: UseResumeManagerProps = {}) =
 
         try {
             const content = await editorInstance.current.save();
+            console.log("blocks", content.blocks);
             if (editingResumeId) {
                 console.log("Updating existing resume:", editingResumeId); // Лог ID обновляемого резюме
                 await apiClient.put(`/resumes/${editingResumeId}`, {
                     title: newResumeTitle,
-                    content,
+                        content,
                 });
                 console.log("Successfully updated resume:", content);
                 setResumes((prevResumes) =>
@@ -82,7 +85,7 @@ const useResumeManager = ({ initialResumes = [] }: UseResumeManagerProps = {}) =
         editorInstance.current?.destroy();
         editorInstance.current = new EditorJS({
             holder: 'editorjs',
-            data,
+            data: data || { blocks: [] },
             tools: {
                 header: Header,
                 list: List,
@@ -94,7 +97,6 @@ const useResumeManager = ({ initialResumes = [] }: UseResumeManagerProps = {}) =
     // Edit an existing resume
     const handleEditResume = useCallback(
         async (id: number) => {  // Убедитесь, что id - это number
-            console.log("Editing resume ID:", id); // Лог ID резюме
             const resume = resumes.find((r) => r.resume_id === id);
             if (!resume) {
                 console.warn("Resume not found!");
@@ -103,9 +105,8 @@ const useResumeManager = ({ initialResumes = [] }: UseResumeManagerProps = {}) =
 
             setEditingResumeId(id);
             setNewResumeTitle(resume.title);
-            console.log("Initializing editor with content:", resume.content);
+            console.log("Editing resume:", resume.content);
             initializeEditor(resume.content);
-            console.log("EditingResumeId after set:", id); // Лог после обновления состояния
         },
         [resumes, initializeEditor]
     );

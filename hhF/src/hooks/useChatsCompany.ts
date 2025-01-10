@@ -21,6 +21,7 @@ interface Message {
     sender: {
         id: string;
         name: string;
+        type: string;
     };
 }
 
@@ -29,23 +30,22 @@ const useChatsCompany = (companyId: string | null) => {
     const [currentChatId, setCurrentChatId] = useState<number | null>(null);
     const [socket, setSocket] = useState<Socket | null>(null);
     const [messages, setMessages] = useState<Message[]>([]);
-    const [loading, setLoading] = useState(true); // состояние загрузки
-    const [error, setError] = useState<string | null>(null); // состояние ошибки
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchChats = async () => {
             if (!companyId) {
-                return; // or handle the case where userId is null, maybe set an error state
+                return;
             }
             try {
                 const response = await apiClient.get<Chat[]>(`/chat/company/${companyId}`);
                 setChats(response.data);
             } catch (err) {
                 console.error("Ошибка при получении чатов:", err);
-                setError("Ошибка при загрузке чатов"); // устанавливаем сообщение об ошибке
+                setError("Ошибка при загрузке чатов");
             } finally {
-                setLoading(false); // завершаем загрузку независимо от результата
+                setLoading(false);
             }
         };
 
@@ -76,15 +76,13 @@ const useChatsCompany = (companyId: string | null) => {
                 setMessages(loadedMessages);
             });
 
-            console.log(currentChatId);
-
             return () => {
                 if (socket) {
                     socket.off("receiveMessage");
                     socket.off("loadMessages");
-                    if (currentChatId) { // Проверяем на null
+                    if (currentChatId) {
                         socket.emit("leaveChat", {
-                            chatId: currentChatId, // Используйте id чата, а не userId/companyId
+                            chatId: currentChatId,
                         });
                     }
                 }
@@ -100,13 +98,13 @@ const useChatsCompany = (companyId: string | null) => {
     const handleSendMessage = (messageContent: string) => {
         if (socket && currentChatId && messageContent && companyId) {
             socket.emit("sendMessage", {
-                chatId: currentChatId, // Используем currentChatId
+                chatId: currentChatId,
                 content: messageContent,
-                senderId: companyId,
+                senderId: companyId, // Отправитель — это компания
+                type: "company", // Указываем тип отправителя
             });
         }
     };
-
 
     return { chats, currentChatId, messages, loading, error, handleChatSelect, handleSendMessage };
 };
